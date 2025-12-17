@@ -4,12 +4,12 @@ import com.nexushr.nexushr_server.common.entity.BaseEntity;
 import com.nexushr.nexushr_server.modules.tenant.Tenant;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 @Entity
-@Table(name = "users")
+@Table(name = "users", uniqueConstraints = {
+        @UniqueConstraint(columnNames = { "tenant_id", "email" })
+})
 @Getter
 @Setter
 @NoArgsConstructor

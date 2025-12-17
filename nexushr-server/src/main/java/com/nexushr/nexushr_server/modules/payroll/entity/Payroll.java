@@ -31,14 +31,16 @@ public class Payroll extends BaseEntity {
     @Column(name = "pay_period_end", nullable = false)
     private LocalDate payPeriodEnd;
 
-    @Column(name = "base_salary", nullable = false)
+    @Column(name = "base_salary", nullable = false, precision = 10, scale = 2)
     private BigDecimal baseSalary;
 
+    @Column(precision = 10, scale = 2)
     private BigDecimal allowances = BigDecimal.ZERO;
 
+    @Column(precision = 10, scale = 2)
     private BigDecimal deductions = BigDecimal.ZERO;
 
-    @Column(name = "net_salary", nullable = false)
+    @Column(name = "net_salary", nullable = false, precision = 10, scale = 2)
     private BigDecimal netSalary;
 
     private String status = "pending";

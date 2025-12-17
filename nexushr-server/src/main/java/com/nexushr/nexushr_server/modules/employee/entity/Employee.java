@@ -1,8 +1,7 @@
 package com.nexushr.nexushr_server.modules.employee.entity;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
@@ -11,26 +10,29 @@ import com.nexushr.nexushr_server.modules.auth.User;
 import com.nexushr.nexushr_server.modules.tenant.Tenant;
 
 @Entity
-@Table(name = "employees")
+@Table(name = "employees", uniqueConstraints = {
+        @UniqueConstraint(columnNames = { "tenant_id", "employee_id" })
+})
 @Getter
 @Setter
+@NoArgsConstructor
 public class Employee extends BaseEntity {
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "tenant_id")
+    @JoinColumn(name = "tenant_id", nullable = false)
     private Tenant tenant;
 
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
     private User user;
 
-    @Column(name = "employee_id", nullable = false)
+    @Column(name = "employee_id", nullable = false, length = 50)
     private String employeeId;
 
-    @Column(name = "first_name", nullable = false)
+    @Column(name = "first_name", nullable = false, length = 100)
     private String firstName;
 
-    @Column(name = "last_name", nullable = false)
+    @Column(name = "last_name", nullable = false, length = 100)
     private String lastName;
 
     @ManyToOne(fetch = FetchType.LAZY)
@@ -43,8 +45,18 @@ public class Employee extends BaseEntity {
     @Column(name = "hire_date", nullable = false)
     private LocalDate hireDate;
 
-    @Column(name = "base_salary", nullable = false)
+    @Column(length = 20)
+    private String phone;
+
+    @Column(columnDefinition = "TEXT")
+    private String address;
+
+    @Column(name = "bank_account", length = 50)
+    private String bankAccount;
+
+    @Column(name = "base_salary", nullable = false, precision = 10, scale = 2)
     private BigDecimal baseSalary;
 
+    @Column(length = 20)
     private String status = "active";
 }

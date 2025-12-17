@@ -1,8 +1,7 @@
 package com.nexushr.nexushr_server.modules.attendance;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
@@ -11,7 +10,9 @@ import com.nexushr.nexushr_server.modules.employee.entity.Employee;
 import com.nexushr.nexushr_server.modules.tenant.Tenant;
 
 @Entity
-@Table(name = "attendance")
+@Table(name = "attendance", uniqueConstraints = {
+        @UniqueConstraint(columnNames = { "tenant_id", "employee_id", "date" })
+})
 @Getter
 @Setter
 public class Attendance extends BaseEntity {
