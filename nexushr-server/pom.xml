@@ -13,7 +13,7 @@
 	<artifactId>nexushr-server</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>nexushr-server</name>
-	<description>Demo project for Spring Boot</description>
+	<description>An HR and PAYROLL management system APP</description>
 	<url />
 	<licenses>
 		<license />

@@ -1,0 +1,8 @@
+target/*
+!target/*.jar
+.git/
+.env
+*.md
+.mvn/
+mvnw
+mvnw.cmd
