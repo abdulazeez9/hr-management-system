@@ -1,5 +1,6 @@
 package com.nexushr.nexushr_server.config;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -20,6 +21,9 @@ public class DataInitializer {
     private final TenantRepository tenantRepository;
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
+
+    @Value("${app.admin.password}")
+    private String initialPassword;
 
     /**
      * DEV SEED: Runs when SPRING_PROFILES_ACTIVE=dev
@@ -46,7 +50,7 @@ public class DataInitializer {
                 User user = new User();
                 user.setTenant(devTenant);
                 user.setEmail("dev@nexushr.com");
-                user.setPassword(passwordEncoder.encode("nexushr!@2d"));
+                user.setPassword(passwordEncoder.encode(initialPassword));
                 user.setRole("SUPER_ADMIN");
                 userRepository.save(user);
                 log.info("✅ [DEV] Created Dev Admin: dev@nexushr.com");
@@ -77,7 +81,7 @@ public class DataInitializer {
                 User masterAdmin = new User();
                 masterAdmin.setTenant(savedTenant);
                 masterAdmin.setEmail("nexushr@gmail.com");
-                masterAdmin.setPassword(passwordEncoder.encode("nexushr!@2d"));
+                masterAdmin.setPassword(passwordEncoder.encode(initialPassword));
                 masterAdmin.setRole("SUPER_ADMIN");
                 userRepository.save(masterAdmin);
 
