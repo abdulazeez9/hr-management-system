@@ -1,8 +1,9 @@
 package com.nexushr.nexushr_server.modules.payroll.entity;
 
 import jakarta.persistence.*;
-import lombok.*;
 import java.time.LocalDate;
+import lombok.Getter;
+import lombok.Setter;
 
 import com.nexushr.nexushr_server.common.entity.BaseEntity;
 import com.nexushr.nexushr_server.modules.auth.User;
@@ -14,33 +15,22 @@ import com.nexushr.nexushr_server.modules.tenant.Tenant;
 @Getter
 @Setter
 public class Leave extends BaseEntity {
-
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "tenant_id")
+    @JoinColumn(name = "tenant_id", nullable = false)
     private Tenant tenant;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "employee_id")
+    @JoinColumn(name = "employee_id", nullable = false)
     private Employee employee;
 
-    @Column(name = "leave_type", nullable = false)
     private String leaveType;
-
-    @Column(name = "start_date", nullable = false)
     private LocalDate startDate;
-
-    @Column(name = "end_date", nullable = false)
     private LocalDate endDate;
-
-    @Column(nullable = false)
     private Integer days;
-
-    @Column(columnDefinition = "TEXT")
-    private String reason;
-
-    private String status = "pending";
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "approved_by")
     private User approvedBy;
+
+    private String status = "pending";
 }

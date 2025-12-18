@@ -1,8 +1,9 @@
 package com.nexushr.nexushr_server.modules.employee.entity;
 
 import jakarta.persistence.*;
-import lombok.*;
-import java.math.BigDecimal;
+import lombok.Getter;
+import lombok.Setter;
+
 import java.time.LocalDate;
 
 import com.nexushr.nexushr_server.common.entity.BaseEntity;
@@ -11,11 +12,10 @@ import com.nexushr.nexushr_server.modules.tenant.Tenant;
 
 @Entity
 @Table(name = "employees", uniqueConstraints = {
-        @UniqueConstraint(columnNames = { "tenant_id", "employee_id" })
+        @UniqueConstraint(columnNames = { "tenant_id", "employee_code" })
 })
 @Getter
 @Setter
-@NoArgsConstructor
 public class Employee extends BaseEntity {
 
     @ManyToOne(fetch = FetchType.LAZY)
@@ -26,8 +26,8 @@ public class Employee extends BaseEntity {
     @JoinColumn(name = "user_id")
     private User user;
 
-    @Column(name = "employee_id", nullable = false, length = 50)
-    private String employeeId;
+    @Column(name = "employee_code", nullable = false, length = 50)
+    private String employeeCode;
 
     @Column(name = "first_name", nullable = false, length = 100)
     private String firstName;
@@ -39,24 +39,17 @@ public class Employee extends BaseEntity {
     @JoinColumn(name = "department_id")
     private Department department;
 
-    @Column(name = "job_title")
     private String jobTitle;
-
-    @Column(name = "hire_date", nullable = false)
     private LocalDate hireDate;
-
-    @Column(length = 20)
     private String phone;
 
     @Column(columnDefinition = "TEXT")
     private String address;
 
-    @Column(name = "bank_account", length = 50)
     private String bankAccount;
 
-    @Column(name = "base_salary", nullable = false, precision = 10, scale = 2)
-    private BigDecimal baseSalary;
+    @Column(precision = 10, scale = 2, nullable = false)
+    private java.math.BigDecimal baseSalary;
 
-    @Column(length = 20)
     private String status = "active";
 }

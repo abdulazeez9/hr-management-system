@@ -1,23 +1,28 @@
 package com.nexushr.nexushr_server.common.entity;
 
 import jakarta.persistence.*;
-import lombok.*;
-import org.hibernate.annotations.CreationTimestamp;
-import java.time.LocalDateTime;
+import lombok.Getter;
+import lombok.Setter;
 
-@MappedSuperclass
+import java.time.ZonedDateTime;
+import java.util.UUID;
+
+import org.hibernate.annotations.CreationTimestamp;
+
 @Getter
 @Setter
+@MappedSuperclass
 public abstract class BaseEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @GeneratedValue(strategy = GenerationType.UUID)
+    private UUID id;
 
     @CreationTimestamp
     @Column(name = "created_at", updatable = false)
-    private LocalDateTime createdAt;
+    private ZonedDateTime createdAt;
 
     @Column(name = "deleted_at")
-    private LocalDateTime deletedAt;
+    private ZonedDateTime deleted_at;
+
 }

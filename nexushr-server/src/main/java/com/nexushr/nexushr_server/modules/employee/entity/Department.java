@@ -5,17 +5,17 @@ import com.nexushr.nexushr_server.modules.auth.User;
 import com.nexushr.nexushr_server.modules.tenant.Tenant;
 
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.Getter;
+import lombok.Setter;
 
 @Entity
 @Table(name = "departments")
 @Getter
 @Setter
-
 public class Department extends BaseEntity {
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "tenant_id")
+    @JoinColumn(name = "tenant_id", nullable = false)
     private Tenant tenant;
 
     @Column(nullable = false)
