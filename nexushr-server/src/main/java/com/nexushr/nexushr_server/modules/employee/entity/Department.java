@@ -1,8 +1,8 @@
 package com.nexushr.nexushr_server.modules.employee.entity;
 
 import com.nexushr.nexushr_server.common.entity.BaseEntity;
-import com.nexushr.nexushr_server.modules.auth.User;
 import com.nexushr.nexushr_server.modules.tenant.Tenant;
+import com.nexushr.nexushr_server.modules.user.User;
 
 import jakarta.persistence.*;
 import lombok.Getter;

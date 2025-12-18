@@ -4,11 +4,12 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 
 import com.nexushr.nexushr_server.common.entity.BaseEntity;
-import com.nexushr.nexushr_server.modules.auth.User;
 import com.nexushr.nexushr_server.modules.tenant.Tenant;
+import com.nexushr.nexushr_server.modules.user.User;
 
 @Entity
 @Table(name = "employees", uniqueConstraints = {
@@ -52,4 +53,21 @@ public class Employee extends BaseEntity {
     private java.math.BigDecimal baseSalary;
 
     private String status = "active";
+
+    @Transient
+    private String sessionPerformanceNote;
+
+    public Employee(String firstName, String lastName, BigDecimal salary) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.baseSalary = salary;
+    }
+
+    public String getDisplayName() {
+        return this.lastName.toUpperCase() + ", " + this.firstName;
+    }
+
+    public BigDecimal calculateAnnualBonus() {
+        return this.baseSalary.multiply(new BigDecimal("0.10"));
+    }
 }

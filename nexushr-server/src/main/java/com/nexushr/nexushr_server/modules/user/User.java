@@ -1,4 +1,4 @@
-package com.nexushr.nexushr_server.modules.auth;
+package com.nexushr.nexushr_server.modules.user;
 
 import com.nexushr.nexushr_server.common.entity.BaseEntity;
 import com.nexushr.nexushr_server.modules.tenant.Tenant;

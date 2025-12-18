@@ -1,4 +1,3 @@
-CREATE EXTENSION IF NOT EXISTS "pgcrypto";
 
 -- Multi-tenant identifier
 CREATE TABLE tenants (
