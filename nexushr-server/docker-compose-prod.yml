@@ -1,6 +1,6 @@
 services:
   postgres:
-    ports: [] # explicitly remove port exposure
+    ports: []
 
   server:
     image: nexushr-server:latest
