@@ -11,7 +11,7 @@ services:
     volumes:
       - postgres_data:/var/lib/postgresql/data
     healthcheck:
-      test: ['CMD-SHELL', 'pg_isready -U postgres']
+      test: ['CMD-SHELL', 'pg_isready -U ${NEXUSHR_DATABASE_USERNAME}']
       interval: 5s
       timeout: 5s
       retries: 5
@@ -23,9 +23,10 @@ services:
       - '8080:8080'
     environment:
       SPRING_PROFILES_ACTIVE: ${SPRING_PROFILES_ACTIVE:-dev}
-      NEXUSHR_DATABASE_URL: ${NEXUSHR_DATABASE_URL}
+      NEXUSHR_DATABASE_URL: jdbc:postgresql://postgres:5432/nexushr
       NEXUSHR_DATABASE_USERNAME: ${NEXUSHR_DATABASE_USERNAME}
       NEXUSHR_DATABASE_PASSWORD: ${NEXUSHR_DATABASE_PASSWORD}
+      APP_ADMIN_PASSWORD: ${APP_ADMIN_PASSWORD}
     depends_on:
       postgres:
         condition: service_healthy

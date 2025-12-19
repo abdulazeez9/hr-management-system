@@ -1,12 +1,13 @@
 services:
-  postgres:
-    ports: []
-
   server:
     image: nexushr-server:latest
-    build: null
+    container_name: nexushr-server-prod
     ports:
       - '8080:8080'
     environment:
       SPRING_PROFILES_ACTIVE: prod
+      NEXUSHR_DATABASE_URL: ${NEXUSHR_DATABASE_URL}
+      NEXUSHR_DATABASE_USERNAME: ${NEXUSHR_DATABASE_USERNAME}
+      NEXUSHR_DATABASE_PASSWORD: ${NEXUSHR_DATABASE_PASSWORD}
+      APP_ADMIN_PASSWORD: ${APP_ADMIN_PASSWORD}
     restart: always
