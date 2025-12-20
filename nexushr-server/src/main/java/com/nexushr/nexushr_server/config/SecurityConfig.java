@@ -34,7 +34,7 @@ public class SecurityConfig {
                         .roles(user.getRole())
                         .build())
                 .orElseThrow(() -> new UsernameNotFoundException("User not found: " + email));
-    }
+    };
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {

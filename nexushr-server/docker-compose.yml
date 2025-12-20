@@ -2,12 +2,12 @@ services:
   postgres:
     image: postgres:17-alpine
     container_name: nexushr-postgres
+    env_file:
+      - .env
     environment:
       POSTGRES_DB: nexushr
       POSTGRES_USER: ${NEXUSHR_DATABASE_USERNAME}
       POSTGRES_PASSWORD: ${NEXUSHR_DATABASE_PASSWORD}
-    ports:
-      - '5432:5432'
     volumes:
       - postgres_data:/var/lib/postgresql/data
     healthcheck:
@@ -15,21 +15,22 @@ services:
       interval: 5s
       timeout: 5s
       retries: 5
+    restart: unless-stopped
 
   server:
     build: .
     container_name: nexushr-server
+    env_file:
+      - .env
     ports:
       - '8080:8080'
     environment:
       SPRING_PROFILES_ACTIVE: ${SPRING_PROFILES_ACTIVE:-dev}
       NEXUSHR_DATABASE_URL: jdbc:postgresql://postgres:5432/nexushr
-      NEXUSHR_DATABASE_USERNAME: ${NEXUSHR_DATABASE_USERNAME}
-      NEXUSHR_DATABASE_PASSWORD: ${NEXUSHR_DATABASE_PASSWORD}
-      APP_ADMIN_PASSWORD: ${APP_ADMIN_PASSWORD}
     depends_on:
       postgres:
         condition: service_healthy
+    restart: unless-stopped
 
 volumes:
   postgres_data:
