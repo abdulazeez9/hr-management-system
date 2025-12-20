@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Access Issue | NexusHR</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body class="bg-gray-100 flex items-center justify-center min-h-screen">
+    <div class="bg-white p-10 rounded-2xl shadow-xl max-w-lg text-center">
+      <h2 class="text-2xl font-bold text-gray-800">Wait a second...</h2>
+      <p class="text-gray-500 mt-4">Something went wrong with that request.</p>
+
+      <div
+        class="my-6 py-2 px-4 bg-gray-50 rounded border border-gray-200 text-sm font-mono text-gray-600"
+      >
+        Error Code: <span th:text="${status}">400</span>
+      </div>
+
+      <p class="text-sm text-gray-400 mb-6">
+        If you believe this is a mistake, please contact support.
+      </p>
+      <a href="/" class="text-blue-600 font-semibold hover:underline"
+        >← Go Back</a
+      >
+    </div>
+  </body>
+</html>

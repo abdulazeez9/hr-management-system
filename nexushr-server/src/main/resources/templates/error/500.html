@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Server Error | NexusHR</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body class="bg-slate-900 flex items-center justify-center min-h-screen">
+    <div class="max-w-md w-full text-center px-6">
+      <div
+        class="mb-6 inline-flex items-center justify-center w-20 h-20 bg-red-100 rounded-full"
+      >
+        <svg
+          class="w-10 h-10 text-red-600"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"
+          />
+        </svg>
+      </div>
+      <h1 class="text-4xl font-bold text-white mb-2">System Glitch</h1>
+      <p class="text-slate-400 mb-8">
+        Our servers are having a bit of trouble. We've been notified and are
+        looking into it right now.
+      </p>
+      <div class="flex flex-col gap-3">
+        <button
+          onclick="location.reload()"
+          class="w-full bg-white text-slate-900 py-3 rounded-md font-bold hover:bg-slate-200"
+        >
+          Try Refreshing
+        </button>
+        <a href="/" class="text-slate-500 hover:text-white text-sm"
+          >Return Home</a
+        >
+      </div>
+    </div>
+  </body>
+</html>

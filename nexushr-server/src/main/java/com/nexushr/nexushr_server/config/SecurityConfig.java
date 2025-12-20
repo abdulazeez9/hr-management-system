@@ -41,6 +41,13 @@ public class SecurityConfig {
         http
                 .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(auth -> auth
+                        // Permit internal error dispatch and the /error path
+                        .dispatcherTypeMatchers(jakarta.servlet.DispatcherType.ERROR).permitAll()
+                        .requestMatchers("/error/**").permitAll()
+
+                        // Permit static assets so CSS/JS loads on the error page
+                        .requestMatchers("/css/**", "/js/**", "/images/**").permitAll()
+
                         .requestMatchers("/api/auth/**").permitAll()
                         .anyRequest().authenticated())
                 .formLogin(Customizer.withDefaults())
