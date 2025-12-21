@@ -1,4 +1,4 @@
-package com.nexushr.nexushr_server.modules.employee.entity;
+package com.nexushr.nexushr_server.modules.employee;
 
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -8,6 +8,7 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 
 import com.nexushr.nexushr_server.common.entity.BaseEntity;
+import com.nexushr.nexushr_server.modules.department.Department;
 import com.nexushr.nexushr_server.modules.tenant.Tenant;
 import com.nexushr.nexushr_server.modules.user.User;
 

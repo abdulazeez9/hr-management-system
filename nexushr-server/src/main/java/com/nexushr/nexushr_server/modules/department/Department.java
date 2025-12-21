@@ -1,4 +1,4 @@
-package com.nexushr.nexushr_server.modules.employee.entity;
+package com.nexushr.nexushr_server.modules.department;
 
 import com.nexushr.nexushr_server.common.entity.BaseEntity;
 import com.nexushr.nexushr_server.modules.tenant.Tenant;

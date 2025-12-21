@@ -6,7 +6,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import com.nexushr.nexushr_server.common.entity.BaseEntity;
-import com.nexushr.nexushr_server.modules.employee.entity.Employee;
+import com.nexushr.nexushr_server.modules.employee.Employee;
 import com.nexushr.nexushr_server.modules.tenant.Tenant;
 
 @Entity
