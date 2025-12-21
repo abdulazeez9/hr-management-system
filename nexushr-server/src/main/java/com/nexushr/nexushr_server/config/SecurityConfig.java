@@ -31,7 +31,7 @@ public class SecurityConfig {
                 .map(user -> org.springframework.security.core.userdetails.User.builder()
                         .username(user.getEmail())
                         .password(user.getPassword())
-                        .roles(user.getRole())
+                        .authorities(user.getRole())
                         .build())
                 .orElseThrow(() -> new UsernameNotFoundException("User not found: " + email));
     };
@@ -41,14 +41,14 @@ public class SecurityConfig {
         http
                 .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(auth -> auth
-                        // Permit internal error dispatch and the /error path
+                        // ALLOW ACTUATOR
+                        .requestMatchers("/actuator/**").permitAll()
+
                         .dispatcherTypeMatchers(jakarta.servlet.DispatcherType.ERROR).permitAll()
                         .requestMatchers("/error/**").permitAll()
-
-                        // Permit static assets so CSS/JS loads on the error page
                         .requestMatchers("/css/**", "/js/**", "/images/**").permitAll()
-
                         .requestMatchers("/api/auth/**").permitAll()
+
                         .anyRequest().authenticated())
                 .formLogin(Customizer.withDefaults())
                 .httpBasic(Customizer.withDefaults());
