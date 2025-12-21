@@ -1,6 +1,7 @@
 package com.nexushr.nexushr_server.modules.user;
 
 import com.nexushr.nexushr_server.common.entity.BaseEntity;
+import com.nexushr.nexushr_server.common.enums.Role;
 import com.nexushr.nexushr_server.modules.tenant.Tenant;
 
 import jakarta.persistence.*;
@@ -25,7 +26,8 @@ public class User extends BaseEntity {
     @Column(nullable = false)
     private String password;
 
+    @Enumerated(EnumType.STRING)
     @Column(nullable = false, length = 50)
-    private String role;
+    private Role role;
 
 }

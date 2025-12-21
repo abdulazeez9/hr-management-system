@@ -8,8 +8,10 @@ import org.springframework.context.annotation.Profile;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+
 import com.nexushr.nexushr_server.modules.tenant.Tenant;
 import com.nexushr.nexushr_server.modules.tenant.TenantRepository;
+import com.nexushr.nexushr_server.modules.user.Role;
 import com.nexushr.nexushr_server.modules.user.User;
 import com.nexushr.nexushr_server.modules.user.UserRepository;
 
@@ -51,7 +53,7 @@ public class DataInitializer {
                 user.setTenant(devTenant);
                 user.setEmail("dev@nexushr.com");
                 user.setPassword(passwordEncoder.encode(initialPassword));
-                user.setRole("SUPER_ADMIN");
+                user.setRole(Role.SUPER_ADMIN);
                 userRepository.save(user);
                 log.info("✅ [DEV] Created Dev Admin: dev@nexushr.com");
             }
@@ -82,7 +84,7 @@ public class DataInitializer {
                 masterAdmin.setTenant(savedTenant);
                 masterAdmin.setEmail("nexushr@gmail.com");
                 masterAdmin.setPassword(passwordEncoder.encode(initialPassword));
-                masterAdmin.setRole("SUPER_ADMIN");
+                masterAdmin.setRole(Role.SUPER_ADMIN);
                 userRepository.save(masterAdmin);
 
                 log.info("✅ [PROD] Master Admin created: nexushr@gmail.com");
