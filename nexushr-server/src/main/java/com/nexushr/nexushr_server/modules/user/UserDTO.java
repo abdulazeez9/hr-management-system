@@ -1,5 +1,4 @@
 package com.nexushr.nexushr_server.modules.user;
 
-public class LoginRequest {
-
-}
+public class UserDTO {
+};
