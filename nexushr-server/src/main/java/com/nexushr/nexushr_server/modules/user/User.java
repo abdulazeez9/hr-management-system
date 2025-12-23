@@ -1,7 +1,6 @@
 package com.nexushr.nexushr_server.modules.user;
 
 import com.nexushr.nexushr_server.common.entity.BaseEntity;
-import com.nexushr.nexushr_server.common.enums.Role;
 import com.nexushr.nexushr_server.modules.tenant.Tenant;
 
 import jakarta.persistence.*;
